@@ -1,0 +1,74 @@
+﻿@using Pet_Store.Models
+@model pet_nv_CLS
+
+@{
+    ViewBag.Title = "Create_pet";
+
+    List<SelectListItem> listType_one = (List<SelectListItem>)ViewBag.List_one;
+    List<SelectListItem> listType_pets = (List<SelectListItem>)ViewBag.List_pets;
+}
+
+<h2 class="sub_title">Agregar Mascota</h2>
+
+<main>
+    <div>
+        @using (Html.BeginForm("Create_pet", "pet_nv_", FormMethod.Post, null))
+        {
+
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap: 2em; margin:3em 0;">
+
+                <div>
+                    <label>Nombre Mascota</label>
+                    <br />
+                    <div style="display:flex; flex-direction:column;">
+                        @Html.TextBoxFor(p => p.pet_name, new { @class = "input input-cedula" })
+                        @Html.ValidationMessage("pet_name", new { @class = "warning" })
+                    </div>
+                </div>
+
+                <div>
+                    <label>Edad en meses</label>
+                    <br />
+                    <div style="display:flex; flex-direction:column;">
+                        @Html.TextBoxFor(p => p.pet_age_in_months, new { @class = "input input-cedula" })
+                        @Html.ValidationMessage("pet_age_in_months", new { @class = "warning" })
+                    </div>
+
+                </div>
+
+                <div>
+                    <label>Tipo de Mascota</label>
+                    <br />
+                    <div style="display:flex; flex-direction:column;">
+                        @Html.DropDownList("pet_type_id", listType_pets, null, new { @class = "input input-select" })
+                        @Html.ValidationMessage("pet_type_id", new { @class = "warning" })
+                    </div>
+                </div>
+
+                <div>
+                    <label>Dueño</label>
+                    <br />
+                    <div style="display:flex; flex-direction:column;">
+                        @Html.DropDownList("owner_id", listType_one, null, new { @class = "input input-select" })
+                        @Html.ValidationMessage("owner_id", new { @class = "warning" })
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:2em;">
+                <button type="submit" value="Save" class="add_btn save_btn">Guardar</button>
+                <span> @Html.ActionLink("Cancel", "index_pet", "pet_nv_", new { @class = "add_btn save_btn cancel_btn" })</span>
+            </div>
+
+        }
+    </div>
+
+
+    <div style="display:flex; justify-content:right; margin-top:-2em">
+        <img src="~/Content/Images/update-img.png" alt="Alternate Text" style="width:40em; height:28em; opacity:0.4" />
+    </div>
+
+
+</main>
+
+

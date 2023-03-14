@@ -1,0 +1,47 @@
+﻿@using Pet_Store.Models
+@model List<owner_nv_CLS>
+
+@{
+    ViewBag.Title = "Index_client";
+}
+
+<main>
+    <h1 class="title">Lista de Clientes</h1>
+
+
+    <span> @Html.ActionLink("Agregar Cliente", "Create_client", "owner_nv_", new { @class = "add_btn" }) </span>
+
+
+    <table class="table main_table" style="vertical-align: inherit !important;">
+        <thead style="background-color: #e5e5e5;">
+            <tr class="headers">
+                @*<td> Id</td>*@
+                <td> Cedula</td>
+                <td> Nombre Completo </td>
+                <td> Telefono</td>
+                <td> Correo</td>
+                <td> Tipo de cliente</td>
+                <td> Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table_info">
+                    @*<td>@item.Id </td>*@
+                    <td>@item.owner_national_id </td>
+                    <td class="owner_name">@item.owner_name </td>
+                    <td>@item.owner_phone_number </td>
+                    <td>@item.owner_email </td>
+                    <td style="padding-right:3.9em; text-align:center;">@item.client_type_name </td>
+                    <td style="display:flex; gap:1em;">
+                        @Html.ActionLink("Editar", "Edit_client", "owner_nv_", new { id_ = @item.Id }, new { @class = "edit_btn add_btn" })
+                        @Html.ActionLink("Eliminar", "Delete", "owner_nv_", new { id_ = @item.Id }, new { @class = "delete_btn add_btn" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</main>
+

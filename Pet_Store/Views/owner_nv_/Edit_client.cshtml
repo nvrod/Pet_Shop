@@ -1,0 +1,91 @@
+﻿@using Pet_Store.Models
+@model owner_nv_CLS
+
+
+@{
+    ViewBag.Title = "Edit_client";
+    List<SelectListItem> ListType = (List<SelectListItem>)ViewBag.List;
+}
+
+<h2 class="sub_title">Editar Cliente</h2>
+
+<main>
+    <div>
+        @using (Html.BeginForm("Edit_client", "owner_nv_", FormMethod.Post, new { @class = "" }))
+        {
+
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap: 2em; margin:3em 0;">
+                <div style="display:none;">
+                    <label>Id</label>
+                    <br />
+                    <div style="display:flex; flex-direction:column;">
+                        @Html.TextBoxFor(p => p.Id, new { @class = "input input-cedula" })
+                        @Html.ValidationMessage("Id", new { @class = "warning" })
+                    </div>
+
+                </div>
+                <div>
+                    <label>Cedula</label>
+                    <br />
+                    <div style="display:flex; flex-direction:column;">
+                        @Html.TextBoxFor(p => p.owner_national_id, new { @class = "input input-cedula" })
+                        @Html.ValidationMessage("owner_national_id", new { @class = "warning" })
+                    </div>
+
+                </div>
+                <div>
+                    <label>Nombre Completo</label>
+                    <br />
+                    <div style="display:flex; flex-direction:column;">
+                        @Html.TextBoxFor(p => p.owner_name, new { @class = "input input-cedula input-name" })
+                        @Html.ValidationMessage("owner_name", new { @class = "warning" })
+                    </div>
+                </div>
+
+                <div>
+                    <label>Telefono</label>
+                    <br />
+                    <div style="display:flex; flex-direction:column;">
+                        @Html.TextBoxFor(p => p.owner_phone_number, new { @class = "input input-cedula" })
+                        @Html.ValidationMessage("owner_name", new { @class = "warning" })
+                    </div>
+                </div>
+
+                <div>
+                    <label>Email</label>
+                    <br />
+                    <div style="display:flex; flex-direction:column;">
+                        @Html.TextBoxFor(p => p.owner_email, new { @class = "input input-cedula" })
+                        @Html.ValidationMessage("owner_name", new { @class = "warning" })
+                    </div>
+
+                </div>
+
+                <div>
+                    <label>Tipo de cliente</label>
+                    <br />
+                    <div style="display:flex; flex-direction:column;">
+                        @Html.DropDownList("client_type_id", ListType, null, new { @class = "input input-select" })
+                        @Html.ValidationMessage("client_type_id", new { @class = "warning" })
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="display:flex; gap:2em;">
+                <button type="submit" value="Save" class="add_btn save_btn">Guardar</button>
+                <span> @Html.ActionLink("Cancel", "index_client", "owner_nv_", new { @class = "add_btn save_btn cancel_btn" })</span>
+            </div>
+
+        }
+    </div>
+
+
+    <div style="display:flex; justify-content:right; margin-top:-2em">
+        <img src="~/Content/Images/multitasking-img.png" alt="Alternate Text" style="width:40em; height:28em; opacity:0.4" />
+    </div>
+
+
+</main>
+
+

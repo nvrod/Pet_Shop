@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d4cd48a4a0634370b5871f76483c0509" Name="Diagram1">
+        <EntityTypeShape EntityType="analysts_dbModel.client_type_nv" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="analysts_dbModel.employee_nv" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="analysts_dbModel.owner_nv" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="analysts_dbModel.pet_nv" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="analysts_dbModel.pet_type_nv" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="analysts_dbModel.service_nv" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="analysts_dbModel.service_type_nv" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="analysts_dbModel.FK_owner_nv_client_type_nv" ManuallyRouted="false" />
+        <AssociationConnector Association="analysts_dbModel.FK_service_nv_employee_nv" ManuallyRouted="false" />
+        <AssociationConnector Association="analysts_dbModel.FK_pet_nv_owner_nv" ManuallyRouted="false" />
+        <AssociationConnector Association="analysts_dbModel.FK_pet_nv_pet_type_nv" ManuallyRouted="false" />
+        <AssociationConnector Association="analysts_dbModel.FK_service_nv_pet_nv" ManuallyRouted="false" />
+        <AssociationConnector Association="analysts_dbModel.FK_service_nv_service_type_nv" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

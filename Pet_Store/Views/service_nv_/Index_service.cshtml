@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Pet_Store.Models.service_nv>
+
+@{
+    ViewBag.Title = "Index_service";
+}
+
+
+<main>
+    <h1 class="title">Lista de Servicios</h1>
+
+    <span>@Html.ActionLink("Agregar Servicio", "Create_service", "service_nv_", new { @class = "add_btn" })</span>
+    <table class="table main_table" style="vertical-align: inherit !important; margin-bottom:5em;">
+
+        <thead style="background-color: #e5e5e5;">
+            <tr class="headers">
+                <td>Fecha Cita</td>
+                <td>Nombre Empleado</td>
+                <td>Nombre mascota</td>
+                <td>Tipo de servicio</td>
+                <td>Acciones</td>
+            </tr>
+        </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td >@Html.DisplayFor(modelItem => item.service_date)</td>
+
+                    <td class="owner_name"> @Html.DisplayFor(modelItem => item.employee_nv.employee_name)</td>
+                    <td class="owner_name">@Html.DisplayFor(modelItem => item.pet_nv.pet_name)</td>
+                    <td class="owner_name">@Html.DisplayFor(modelItem => item.service_type_nv.service_type)</td>
+                    <td style="display:flex; gap:1em;">
+                        @Html.ActionLink("Editar", "Edit_service", new { id = item.id }, new { @class = "edit_btn add_btn" })
+                        @Html.ActionLink("Elininar", "Delete_service", "service_nv_", new { id = item.id }, new { @class = "delete_btn add_btn" })
+                    </td>
+                </tr>
+            }
+
+    </table>
+</main>
+

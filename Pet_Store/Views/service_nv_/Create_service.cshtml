@@ -1,0 +1,65 @@
+﻿@model Pet_Store.Models.service_nv
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2 class="sub_title">Agregar Servicio</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap: 2em; margin:3em 0;">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label> Tipo de servicio</label>
+            <div style="display:flex; flex-direction:column;">
+                @Html.DropDownList("service_type_id", null, htmlAttributes: new { @class = "input input-cedula input-name" })
+                @Html.ValidationMessageFor(model => model.service_type_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label> Fecha cita</label>
+            <div tyle="display:flex; flex-direction:column;">
+                @Html.EditorFor(model => model.service_date, new { htmlAttributes = new { @class = "input input-cedula" } })
+                @Html.ValidationMessageFor(model => model.service_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label> Nombre Empleado</label>
+            <div style="display:flex; flex-direction:column;">
+                @Html.DropDownList("employee_id", null, htmlAttributes: new { @class = "input input-cedula input-name" })
+                @Html.ValidationMessageFor(model => model.employee_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label> Mascota</label>
+            <div tyle="display:flex; flex-direction:column;">
+                @Html.DropDownList("pet_id", null, htmlAttributes: new { @class = "input input-cedula input-name" })
+                @Html.ValidationMessageFor(model => model.pet_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div style="display:flex; gap:2em;">
+        <button type="submit" value="Save" class="add_btn save_btn">Guardar</button>
+        <span> @Html.ActionLink("Cancel", "index_service", "service_nv_", new { @class = "add_btn save_btn cancel_btn" })</span>
+    </div>
+    <div style="display:flex; justify-content:right; margin-top:-2em">
+        <img src="~/Content/Images/update-img.png" alt="Alternate Text" style="width:40em; height:28em; opacity:0.4" />
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

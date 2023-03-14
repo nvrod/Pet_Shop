@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="analysts_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="client_type_nv">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_type" Type="varchar" MaxLength="50" />
+          <Property Name="is_active" Type="bit" />
+        </EntityType>
+        <EntityType Name="employee_nv">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_name" Type="varchar" MaxLength="50" />
+          <Property Name="employee_national_id" Type="bigint" />
+          <Property Name="is_active" Type="bit" />
+        </EntityType>
+        <EntityType Name="owner_nv">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="owner_national_id" Type="bigint" Nullable="false" />
+          <Property Name="owner_name" Type="varchar" MaxLength="50" />
+          <Property Name="owner_phone_number" Type="varchar" MaxLength="50" />
+          <Property Name="owner_email" Type="varchar" MaxLength="50" />
+          <Property Name="client_type_id" Type="int" Nullable="false" />
+          <Property Name="is_active" Type="bit" />
+        </EntityType>
+        <EntityType Name="pet_nv">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pet_type_id" Type="int" Nullable="false" />
+          <Property Name="pet_name" Type="varchar" MaxLength="50" />
+          <Property Name="pet_age_in_months" Type="int" />
+          <Property Name="owner_id" Type="int" Nullable="false" />
+          <Property Name="is_active" Type="bit" />
+        </EntityType>
+        <EntityType Name="pet_type_nv">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pet_type" Type="varchar" MaxLength="50" />
+          <Property Name="is_active" Type="bit" />
+        </EntityType>
+        <EntityType Name="service_nv">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="service_type_id" Type="int" Nullable="false" />
+          <Property Name="service_date" Type="datetime" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="pet_id" Type="int" Nullable="false" />
+          <Property Name="is_active" Type="bit" />
+        </EntityType>
+        <EntityType Name="service_type_nv">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="service_type" Type="varchar" MaxLength="50" />
+          <Property Name="is_active" Type="bit" />
+        </EntityType>
+        <Association Name="FK_owner_nv_client_type_nv">
+          <End Role="client_type_nv" Type="Self.client_type_nv" Multiplicity="1" />
+          <End Role="owner_nv" Type="Self.owner_nv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client_type_nv">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="owner_nv">
+              <PropertyRef Name="client_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pet_nv_owner_nv">
+          <End Role="owner_nv" Type="Self.owner_nv" Multiplicity="1" />
+          <End Role="pet_nv" Type="Self.pet_nv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="owner_nv">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pet_nv">
+              <PropertyRef Name="owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pet_nv_pet_type_nv">
+          <End Role="pet_type_nv" Type="Self.pet_type_nv" Multiplicity="1" />
+          <End Role="pet_nv" Type="Self.pet_nv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pet_type_nv">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pet_nv">
+              <PropertyRef Name="pet_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_service_nv_employee_nv">
+          <End Role="employee_nv" Type="Self.employee_nv" Multiplicity="1" />
+          <End Role="service_nv" Type="Self.service_nv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee_nv">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="service_nv">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_service_nv_pet_nv">
+          <End Role="pet_nv" Type="Self.pet_nv" Multiplicity="1" />
+          <End Role="service_nv" Type="Self.service_nv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pet_nv">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="service_nv">
+              <PropertyRef Name="pet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_service_nv_service_type_nv">
+          <End Role="service_type_nv" Type="Self.service_type_nv" Multiplicity="1" />
+          <End Role="service_nv" Type="Self.service_nv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service_type_nv">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="service_nv">
+              <PropertyRef Name="service_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="analysts_dbModelStoreContainer">
+          <EntitySet Name="client_type_nv" EntityType="Self.client_type_nv" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee_nv" EntityType="Self.employee_nv" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="owner_nv" EntityType="Self.owner_nv" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pet_nv" EntityType="Self.pet_nv" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pet_type_nv" EntityType="Self.pet_type_nv" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="service_nv" EntityType="Self.service_nv" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="service_type_nv" EntityType="Self.service_type_nv" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_owner_nv_client_type_nv" Association="Self.FK_owner_nv_client_type_nv">
+            <End Role="client_type_nv" EntitySet="client_type_nv" />
+            <End Role="owner_nv" EntitySet="owner_nv" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pet_nv_owner_nv" Association="Self.FK_pet_nv_owner_nv">
+            <End Role="owner_nv" EntitySet="owner_nv" />
+            <End Role="pet_nv" EntitySet="pet_nv" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pet_nv_pet_type_nv" Association="Self.FK_pet_nv_pet_type_nv">
+            <End Role="pet_type_nv" EntitySet="pet_type_nv" />
+            <End Role="pet_nv" EntitySet="pet_nv" />
+          </AssociationSet>
+          <AssociationSet Name="FK_service_nv_employee_nv" Association="Self.FK_service_nv_employee_nv">
+            <End Role="employee_nv" EntitySet="employee_nv" />
+            <End Role="service_nv" EntitySet="service_nv" />
+          </AssociationSet>
+          <AssociationSet Name="FK_service_nv_pet_nv" Association="Self.FK_service_nv_pet_nv">
+            <End Role="pet_nv" EntitySet="pet_nv" />
+            <End Role="service_nv" EntitySet="service_nv" />
+          </AssociationSet>
+          <AssociationSet Name="FK_service_nv_service_type_nv" Association="Self.FK_service_nv_service_type_nv">
+            <End Role="service_type_nv" EntitySet="service_type_nv" />
+            <End Role="service_nv" EntitySet="service_nv" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="analysts_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="client_type_nv">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_active" Type="Boolean" />
+          <NavigationProperty Name="owner_nv" Relationship="Self.FK_owner_nv_client_type_nv" FromRole="client_type_nv" ToRole="owner_nv" />
+        </EntityType>
+        <EntityType Name="employee_nv">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="employee_national_id" Type="Int64" />
+          <Property Name="is_active" Type="Boolean" />
+          <NavigationProperty Name="service_nv" Relationship="Self.FK_service_nv_employee_nv" FromRole="employee_nv" ToRole="service_nv" />
+        </EntityType>
+        <EntityType Name="owner_nv">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="owner_national_id" Type="Int64" Nullable="false" />
+          <Property Name="owner_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="owner_phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="owner_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="client_type_id" Type="Int32" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" />
+          <NavigationProperty Name="client_type_nv" Relationship="Self.FK_owner_nv_client_type_nv" FromRole="owner_nv" ToRole="client_type_nv" />
+          <NavigationProperty Name="pet_nv" Relationship="Self.FK_pet_nv_owner_nv" FromRole="owner_nv" ToRole="pet_nv" />
+        </EntityType>
+        <EntityType Name="pet_nv">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pet_type_id" Type="Int32" Nullable="false" />
+          <Property Name="pet_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pet_age_in_months" Type="Int32" />
+          <Property Name="owner_id" Type="Int32" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" />
+          <NavigationProperty Name="owner_nv" Relationship="Self.FK_pet_nv_owner_nv" FromRole="pet_nv" ToRole="owner_nv" />
+          <NavigationProperty Name="pet_type_nv" Relationship="Self.FK_pet_nv_pet_type_nv" FromRole="pet_nv" ToRole="pet_type_nv" />
+          <NavigationProperty Name="service_nv" Relationship="Self.FK_service_nv_pet_nv" FromRole="pet_nv" ToRole="service_nv" />
+        </EntityType>
+        <EntityType Name="pet_type_nv">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pet_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_active" Type="Boolean" />
+          <NavigationProperty Name="pet_nv" Relationship="Self.FK_pet_nv_pet_type_nv" FromRole="pet_type_nv" ToRole="pet_nv" />
+        </EntityType>
+        <EntityType Name="service_nv">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="service_type_id" Type="Int32" Nullable="false" />
+          <Property Name="service_date" Type="DateTime" Precision="3" />
+          <Property Name="employee_id" Type="Int32" Nullable="false" />
+          <Property Name="pet_id" Type="Int32" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" />
+          <NavigationProperty Name="employee_nv" Relationship="Self.FK_service_nv_employee_nv" FromRole="service_nv" ToRole="employee_nv" />
+          <NavigationProperty Name="pet_nv" Relationship="Self.FK_service_nv_pet_nv" FromRole="service_nv" ToRole="pet_nv" />
+          <NavigationProperty Name="service_type_nv" Relationship="Self.FK_service_nv_service_type_nv" FromRole="service_nv" ToRole="service_type_nv" />
+        </EntityType>
+        <EntityType Name="service_type_nv">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="service_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_active" Type="Boolean" />
+          <NavigationProperty Name="service_nv" Relationship="Self.FK_service_nv_service_type_nv" FromRole="service_type_nv" ToRole="service_nv" />
+        </EntityType>
+        <Association Name="FK_owner_nv_client_type_nv">
+          <End Role="client_type_nv" Type="Self.client_type_nv" Multiplicity="1" />
+          <End Role="owner_nv" Type="Self.owner_nv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client_type_nv">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="owner_nv">
+              <PropertyRef Name="client_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_service_nv_employee_nv">
+          <End Role="employee_nv" Type="Self.employee_nv" Multiplicity="1" />
+          <End Role="service_nv" Type="Self.service_nv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee_nv">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="service_nv">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pet_nv_owner_nv">
+          <End Role="owner_nv" Type="Self.owner_nv" Multiplicity="1" />
+          <End Role="pet_nv" Type="Self.pet_nv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="owner_nv">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pet_nv">
+              <PropertyRef Name="owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pet_nv_pet_type_nv">
+          <End Role="pet_type_nv" Type="Self.pet_type_nv" Multiplicity="1" />
+          <End Role="pet_nv" Type="Self.pet_nv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pet_type_nv">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pet_nv">
+              <PropertyRef Name="pet_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_service_nv_pet_nv">
+          <End Role="pet_nv" Type="Self.pet_nv" Multiplicity="1" />
+          <End Role="service_nv" Type="Self.service_nv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pet_nv">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="service_nv">
+              <PropertyRef Name="pet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_service_nv_service_type_nv">
+          <End Role="service_type_nv" Type="Self.service_type_nv" Multiplicity="1" />
+          <End Role="service_nv" Type="Self.service_nv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service_type_nv">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="service_nv">
+              <PropertyRef Name="service_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="analysts_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="client_type_nv" EntityType="Self.client_type_nv" />
+          <EntitySet Name="employee_nv" EntityType="Self.employee_nv" />
+          <EntitySet Name="owner_nv" EntityType="Self.owner_nv" />
+          <EntitySet Name="pet_nv" EntityType="Self.pet_nv" />
+          <EntitySet Name="pet_type_nv" EntityType="Self.pet_type_nv" />
+          <EntitySet Name="service_nv" EntityType="Self.service_nv" />
+          <EntitySet Name="service_type_nv" EntityType="Self.service_type_nv" />
+          <AssociationSet Name="FK_owner_nv_client_type_nv" Association="Self.FK_owner_nv_client_type_nv">
+            <End Role="client_type_nv" EntitySet="client_type_nv" />
+            <End Role="owner_nv" EntitySet="owner_nv" />
+          </AssociationSet>
+          <AssociationSet Name="FK_service_nv_employee_nv" Association="Self.FK_service_nv_employee_nv">
+            <End Role="employee_nv" EntitySet="employee_nv" />
+            <End Role="service_nv" EntitySet="service_nv" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pet_nv_owner_nv" Association="Self.FK_pet_nv_owner_nv">
+            <End Role="owner_nv" EntitySet="owner_nv" />
+            <End Role="pet_nv" EntitySet="pet_nv" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pet_nv_pet_type_nv" Association="Self.FK_pet_nv_pet_type_nv">
+            <End Role="pet_type_nv" EntitySet="pet_type_nv" />
+            <End Role="pet_nv" EntitySet="pet_nv" />
+          </AssociationSet>
+          <AssociationSet Name="FK_service_nv_pet_nv" Association="Self.FK_service_nv_pet_nv">
+            <End Role="pet_nv" EntitySet="pet_nv" />
+            <End Role="service_nv" EntitySet="service_nv" />
+          </AssociationSet>
+          <AssociationSet Name="FK_service_nv_service_type_nv" Association="Self.FK_service_nv_service_type_nv">
+            <End Role="service_type_nv" EntitySet="service_type_nv" />
+            <End Role="service_nv" EntitySet="service_nv" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="analysts_dbModelStoreContainer" CdmEntityContainer="analysts_dbEntities">
+          <EntitySetMapping Name="client_type_nv">
+            <EntityTypeMapping TypeName="analysts_dbModel.client_type_nv">
+              <MappingFragment StoreEntitySet="client_type_nv">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="client_type" ColumnName="client_type" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee_nv">
+            <EntityTypeMapping TypeName="analysts_dbModel.employee_nv">
+              <MappingFragment StoreEntitySet="employee_nv">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="employee_name" ColumnName="employee_name" />
+                <ScalarProperty Name="employee_national_id" ColumnName="employee_national_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="owner_nv">
+            <EntityTypeMapping TypeName="analysts_dbModel.owner_nv">
+              <MappingFragment StoreEntitySet="owner_nv">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="owner_national_id" ColumnName="owner_national_id" />
+                <ScalarProperty Name="owner_name" ColumnName="owner_name" />
+                <ScalarProperty Name="owner_phone_number" ColumnName="owner_phone_number" />
+                <ScalarProperty Name="owner_email" ColumnName="owner_email" />
+                <ScalarProperty Name="client_type_id" ColumnName="client_type_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pet_nv">
+            <EntityTypeMapping TypeName="analysts_dbModel.pet_nv">
+              <MappingFragment StoreEntitySet="pet_nv">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="pet_type_id" ColumnName="pet_type_id" />
+                <ScalarProperty Name="pet_name" ColumnName="pet_name" />
+                <ScalarProperty Name="pet_age_in_months" ColumnName="pet_age_in_months" />
+                <ScalarProperty Name="owner_id" ColumnName="owner_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pet_type_nv">
+            <EntityTypeMapping TypeName="analysts_dbModel.pet_type_nv">
+              <MappingFragment StoreEntitySet="pet_type_nv">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="pet_type" ColumnName="pet_type" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="service_nv">
+            <EntityTypeMapping TypeName="analysts_dbModel.service_nv">
+              <MappingFragment StoreEntitySet="service_nv">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="service_type_id" ColumnName="service_type_id" />
+                <ScalarProperty Name="service_date" ColumnName="service_date" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="pet_id" ColumnName="pet_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="service_type_nv">
+            <EntityTypeMapping TypeName="analysts_dbModel.service_type_nv">
+              <MappingFragment StoreEntitySet="service_type_nv">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="service_type" ColumnName="service_type" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,38 @@
+﻿@using Pet_Store.Models
+@model List<employee_nv_CLS>
+
+
+@{
+    ViewBag.Title = "Index_employee";
+}
+
+<main>
+    <h1 class="title">Lista de Empleados</h1>
+
+    <span> @Html.ActionLink("Agregar Empleado", "Create_employee", "employee_nv_", new { @class = "add_btn" }) </span>
+
+
+    <table class="table main_table" style="vertical-align: inherit !important; width:90%;">
+        <thead style="background-color: #e5e5e5;">
+            <tr class="headers">
+                <td> Nombre Completo </td>
+                <td> Cedula</td>
+                <td> Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table_info">
+                    <td class="owner_name">@item.employee_name </td>
+                    <td>@item.employee_national_id </td>
+                    <td style="display:flex; gap:1em;">
+                        @Html.ActionLink("Editar", "Edit_employee", "employee_nv_", new { id_ = @item.Id }, new { @class = "edit_btn add_btn" })
+                        @Html.ActionLink("Eliminar", "Delete_employee", "employee_nv_", new { id_ = @item.Id }, new { @class = "delete_btn add_btn" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</main>
+

@@ -1,0 +1,64 @@
+﻿@using Pet_Store.Models
+@model employee_nv_CLS
+@{
+    ViewBag.Title = "Edit_employee";
+}
+
+<h2 class="sub_title">Editar Empleado</h2>
+
+<main>
+    <div>
+        @using (Html.BeginForm("Edit_employee", "employee_nv_", FormMethod.Post, new { @class = "" }))
+        {
+
+            <div style="display:grid; grid-template-columns:repeat(1,1fr); gap: 2em; margin:3em 0;">
+
+                <div style="display:none;">
+                    <label>Id</label>
+                    <br />
+                    <div style="display:flex; flex-direction:column;">
+                        @Html.TextBoxFor(p => p.Id, new { @class = "input input-cedula" })
+                        @Html.ValidationMessage("Id", new { @class = "warning" })
+                    </div>
+
+                </div>
+                <div>
+                    <label>Cedula</label>
+                    <br />
+                    <div style="display:flex; flex-direction:column;">
+                        @Html.TextBoxFor(p => p.employee_national_id, new { @class = "input input-cedula" })
+                        @Html.ValidationMessage("owner_national_id", new { @class = "warning" })
+                    </div>
+
+                </div>
+                <div>
+                    <label>Nombre Completo</label>
+                    <br />
+                    <div style="display:flex; flex-direction:column;">
+                        @Html.TextBoxFor(p => p.employee_name, new { @class = "input input-cedula input-name" })
+                        @Html.ValidationMessage("owner_name", new { @class = "warning" })
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div style="display:flex; gap:2em;">
+                <button type="submit" value="Save" class="add_btn save_btn">Guardar</button>
+                <span> @Html.ActionLink("Cancel", "index_employee", "employee_nv_", new { @class = "add_btn save_btn cancel_btn" })</span>
+            </div>
+
+        }
+    </div>
+
+
+    <div style="display:flex; justify-content:right; margin-top:-2em">
+        <img src="~/Content/Images/multitasking-img.png" alt="Alternate Text" style="width:40em; height:28em; opacity:0.4" />
+    </div>
+
+
+</main>
+
+
+
+

@@ -1,0 +1,341 @@
+﻿
+/* --------- Generales ---------*/
+
+:root {
+    --bright_yellow: #fca311;
+    --dark_yellow: #e09f3e;
+    --red: #9e2a2b;
+    --soft_green: #335c67;
+    --bg_color: #fffcedbe;
+}
+
+body {
+    background-image: url(Images/logo.png);
+    background-repeat: no-repeat;
+    background-blend-mode: hard-light;
+    background-position: center;
+    background-position-x: 70em;
+    background-position-y: 5em;
+    background-size: 5em;
+    background-color: var(--bg_color);
+}
+
+/* --------- Barra de Navegacion ---------*/
+
+
+/* --------- Titulos ---------*/
+.title {
+    margin-top: 1em;
+    font-size: 3em;
+    border-bottom: 1px solid var(--bright_yellow);
+    padding-bottom: 10px;
+}
+
+.sub_title {
+    border-bottom: 1px solid var(--bright_yellow);
+    margin-top: 2em;
+    padding-bottom: 10px;
+}
+
+/* --------- Tablas ---------*/
+
+.main_table {
+    margin-top: 3em;
+    border-radius: 10px;
+    background: #f2f2f2;
+    box-shadow: 5px 5px 12px #b7b7b7, -5px -5px 12px var(--bg_color);
+    vertical-align: inherit !important;
+}
+
+.headers td {
+    font-weight: 700;
+    color: var(--bright_yellow);
+}
+
+.table_info .owner_name {
+    text-transform: capitalize;
+}
+
+/* --------- Inputs  ---------*/
+
+.input {
+    border-radius: 10px !important;
+    height:2em;
+    border:1px solid black;
+    padding-left: .5em;
+}
+
+.input:focus-visible {
+    outline:none;
+    border: 2px solid #BF0426 !important;
+}
+
+
+.input-cedula{
+    width:50em !important;
+}
+
+.input-select {
+    width: 10em;
+}
+
+.warning {
+    color: red;
+}
+
+.input-name{
+    text-transform:capitalize;
+}
+/* --------- Botones ---------*/
+.add_btn {
+    position: relative;
+    font-size: 1.2em;
+    padding: .6em;
+    background-color: var(--dark_yellow);
+    text-decoration: none;
+    border: none;
+    border-radius: 0.5em;
+    color: #ffffff;
+    box-shadow: 0.3em 0.3em 0.3em rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin: 2em 0 0 0;
+    text-decoration: none;
+    width: 10em;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+}
+
+    .add_btn::before {
+        position: absolute;
+        content: '';
+        height: 0;
+        width: 0;
+        top: 0;
+        left: 0;
+        background: linear-gradient(135deg, rgba(33,33,33,1) 0%, rgba(33,33,33,1) 30%, var(--bright_yellow) 50%, var(--bright_yellow) 60%);
+        border-radius: 0 0 1em 0;
+        box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3);
+        transition: 0.3s;
+    }
+
+    .add_btn:hover::before {
+        width: 1.3em;
+        height: 1.3em;
+        color: #ffffff;
+    }
+
+    .add_btn:active {
+        box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3);
+        transform: translate(0.1em, 0.1em);
+    }
+
+    .add_btn:hover {
+        color: #ffffff;
+    }
+
+
+.save_btn {
+    font-size: 1em;
+    margin: 0 0 0 0;
+    font-weight: 700;
+    background-color: var(--soft_green);
+}
+
+    .save_btn::before {
+        background: linear-gradient(135deg, rgba(33,33,33,1) 0%, rgba(33,33,33,1) 30%, #6ace9d 50%, #81b29a 60%);
+    }
+
+.cancel_btn {
+    background-color: transparent;
+    background-color: var(--red);
+}
+
+    .cancel_btn::before {
+        background: linear-gradient(135deg, rgba(33,33,33,1) 0%, rgba(33,33,33,1) 30%, #540b0e 50%, #d90429 60%);
+    }
+
+.edit_btn {
+    position: relative;
+    font-size: 1em;
+    padding: 0.3em;
+    background-color: var(--soft_green);
+    border-radius: 10px;
+    color: #ffffff;
+    box-shadow: 0.2em 0.2em 0.2em rgb(0 0 0 / 30%);
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 0;
+    width: 6em;
+    text-decoration: none;
+}
+
+    .edit_btn::before {
+        background: linear-gradient(135deg, rgba(33,33,33,1) 0%, rgba(33,33,33,1) 30%, #91c7ac 50%, #81b29a 60%);
+    }
+
+.delete_btn {
+    position: relative;
+    font-size: 1em;
+    padding: 0.4em;
+    background-color: var(--red);
+    border-radius: 10px;
+    color: #ffffff;
+    box-shadow: 0.2em 0.2em 0.2em rgb(0 0 0 / 30%);
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 0;
+    width: 6em;
+    text-decoration: none;
+}
+
+    .delete_btn:hover {
+        color: white;
+    }
+
+    .delete_btn::before {
+        background: linear-gradient(135deg, rgba(33,33,33,1) 0%, rgba(33,33,33,1) 30%, red 50%, #d90429 60%);
+    }
+
+
+/* --------- Contacto ---------*/
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.up {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.down {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.card1 {
+    width: 60px;
+    height: 60px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 90px 5px 5px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .2s ease-in-out;
+}
+
+.instagram {
+    margin-top: 0.9em;
+    margin-left: 0.6em;
+    fill: #cc39a4;
+}
+
+.card2 {
+    width: 60px;
+    height: 60px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 5px 90px 5px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .2s ease-in-out;
+}
+
+.twitter {
+    margin-top: 1em;
+    margin-left: -0.5em;
+    fill: #03A9F4;
+}
+
+.card3 {
+    width: 60px;
+    height: 60px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 5px 5px 5px 90px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .2s ease-in-out;
+}
+
+.github {
+    margin-top: -.6em;
+    margin-left: .6em;
+}
+
+.card4 {
+    width: 60px;
+    height: 60px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 5px 5px 90px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .2s ease-in-out;
+}
+
+.discord {
+    margin-top: -0.9em;
+    margin-left: -0.6em;
+    fill: #8c9eff;
+}
+
+.card1:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #cc39a4;
+}
+
+    .card1:hover .instagram {
+        fill: white;
+    }
+
+.card2:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #03A9F4;
+}
+
+    .card2:hover .twitter {
+        fill: white;
+    }
+
+.card3:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: black;
+}
+
+    .card3:hover .github {
+        fill: white;
+    }
+
+.card4:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #8c9eff;
+}
+
+    .card4:hover .discord {
+        fill: white;
+    }
+
+
+.test-cnt {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 2em;
+    margin: 3em 0;
+    width: 20em;
+}

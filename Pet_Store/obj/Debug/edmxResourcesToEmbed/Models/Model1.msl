@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="analysts_dbModelStoreContainer" CdmEntityContainer="analysts_dbEntities">
+    <EntitySetMapping Name="client_type_nv">
+      <EntityTypeMapping TypeName="analysts_dbModel.client_type_nv">
+        <MappingFragment StoreEntitySet="client_type_nv">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="client_type" ColumnName="client_type" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employee_nv">
+      <EntityTypeMapping TypeName="analysts_dbModel.employee_nv">
+        <MappingFragment StoreEntitySet="employee_nv">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="employee_name" ColumnName="employee_name" />
+          <ScalarProperty Name="employee_national_id" ColumnName="employee_national_id" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="owner_nv">
+      <EntityTypeMapping TypeName="analysts_dbModel.owner_nv">
+        <MappingFragment StoreEntitySet="owner_nv">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="owner_national_id" ColumnName="owner_national_id" />
+          <ScalarProperty Name="owner_name" ColumnName="owner_name" />
+          <ScalarProperty Name="owner_phone_number" ColumnName="owner_phone_number" />
+          <ScalarProperty Name="owner_email" ColumnName="owner_email" />
+          <ScalarProperty Name="client_type_id" ColumnName="client_type_id" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pet_nv">
+      <EntityTypeMapping TypeName="analysts_dbModel.pet_nv">
+        <MappingFragment StoreEntitySet="pet_nv">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="pet_type_id" ColumnName="pet_type_id" />
+          <ScalarProperty Name="pet_name" ColumnName="pet_name" />
+          <ScalarProperty Name="pet_age_in_months" ColumnName="pet_age_in_months" />
+          <ScalarProperty Name="owner_id" ColumnName="owner_id" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pet_type_nv">
+      <EntityTypeMapping TypeName="analysts_dbModel.pet_type_nv">
+        <MappingFragment StoreEntitySet="pet_type_nv">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="pet_type" ColumnName="pet_type" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="service_nv">
+      <EntityTypeMapping TypeName="analysts_dbModel.service_nv">
+        <MappingFragment StoreEntitySet="service_nv">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="service_type_id" ColumnName="service_type_id" />
+          <ScalarProperty Name="service_date" ColumnName="service_date" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="pet_id" ColumnName="pet_id" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="service_type_nv">
+      <EntityTypeMapping TypeName="analysts_dbModel.service_type_nv">
+        <MappingFragment StoreEntitySet="service_type_nv">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="service_type" ColumnName="service_type" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

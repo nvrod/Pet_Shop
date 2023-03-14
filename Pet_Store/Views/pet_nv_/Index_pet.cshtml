@@ -1,0 +1,44 @@
+﻿@using Pet_Store.Models
+@model List<pet_nv_CLS>
+
+
+
+@{
+    ViewBag.Title = "Index_pet";
+}
+
+<main>
+    <h1 class="title">Lista de Mascotas</h1>
+
+
+    <span> @Html.ActionLink("Agregar Mascota", "Create_pet", "pet_nv_", new { @class = "add_btn" }) </span>
+
+
+    <table class="table main_table" style="margin-bottom: 10em; vertical-align: inherit !important;">
+        <thead style="background-color: #e5e5e5;">
+            <tr class="headers">
+                <td> Nombre mascota</td>
+                <td> Edad en meses</td>
+                <td> Nombre Dueño </td>
+                <td> Tipo de mascota</td>
+
+                <td> Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table_info">
+                    <td style="padding-left:3.5em; text-transform:capitalize;">@item.pet_name </td>
+                    <td style="padding-left:3.5em;">@item.pet_age_in_months </td>
+                    <td class="owner_name">@item.owner_name </td>
+                    <td style="padding-left: 3em; text-transform: capitalize;">@item.pet_type_name</td>
+                    <td style="display:flex; gap:1em;">
+                        @Html.ActionLink("Editar", "Edit_pet", "pet_nv_", new { id_ = @item.Id }, new { @class = "edit_btn add_btn" })
+                        @Html.ActionLink("Eliminar", "Delete_pet", "pet_nv_", new { id_ = @item.Id }, new { @class = "delete_btn add_btn" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</main>

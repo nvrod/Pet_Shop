@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Shop</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            <img src="~/Content/Images/logo.png" alt="Alternate Text" style="width:2em; background-color:white; border-radius:50%; margin-right:1em;"  />
+
+            @Html.ActionLink("PETSHOP", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1" style="text-transform:uppercase;">
+                    <li>@Html.ActionLink("Clientes", "Index_client", "owner_nv_", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Mascotas", "Index_pet", "pet_nv_", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Empleados", "Index_employee", "employee_nv_", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Servicios", "Index_service", "service_nv_", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+                <input placeholder="Buscar....." style="width:20em; padding-left:1em; margin-left:10em; border-radius:10px" />
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @Styles.Render("/Content/General.css")
+
+</body>
+</html>
